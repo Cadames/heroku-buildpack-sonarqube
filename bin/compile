@@ -26,8 +26,8 @@ install_jdk() {
   local install_dir=${1}
   local CACHE_DIR=${2}
 
-  JVM_COMMON_BUILDPACK=${JVM_COMMON_BUILDPACK:-https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/jvm-common.tgz}
-  JVM_COMMON="jvm-common.tgz"
+  JVM_COMMON_BUILDPACK=${JVM_COMMON_BUILDPACK:-https://buildpack-registry.s3.amazonaws.com/buildpacks/heroku/jvm.tgz}
+  JVM_COMMON="jvm.tgz"
   if [ ! -f ${CACHE_DIR}/${JVM_COMMON} ]; then
     curl --retry 3 --silent --location $JVM_COMMON_BUILDPACK > ${CACHE_DIR}/${JVM_COMMON}
   fi
@@ -85,7 +85,7 @@ install_sonarts_plugin() {
   local BUILD_DIR=${1}
   local CACHE_DIR=${2}
   
-  SONARTS_DIST_JAR="sonar-typescript-plugin-1.6.0.2388.jar"
+  SONARTS_DIST_JAR="sonar-typescript-plugin-2.1.0.4359"
   SONARTS_URL="https://sonarsource.bintray.com/Distribution/sonar-typescript-plugin/${SONARTS_DIST_JAR}"
 
   echo -n "-----> Downloading SonarTS....."
@@ -126,6 +126,6 @@ install_nodejs() {
 install_jdk ${BUILD_DIR} ${CACHE_DIR}
 install_nodejs ${BUILD_DIR} ${CACHE_DIR}
 install_sonarqube ${BUILD_DIR} ${CACHE_DIR}
-#install_sonarts_plugin ${BUILD_DIR} ${CACHE_DIR}
+install_sonarts_plugin ${BUILD_DIR} ${CACHE_DIR}
 
 
