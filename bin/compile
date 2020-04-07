@@ -127,6 +127,16 @@ install_jdk ${BUILD_DIR} ${CACHE_DIR}
 install_nodejs ${BUILD_DIR} ${CACHE_DIR}
 install_sonarqube ${BUILD_DIR} ${CACHE_DIR}
 install_sonarts_plugin ${BUILD_DIR} ${CACHE_DIR}
-sysctl -w vm.max_map_count=262144
+
+#install vim
+mkdir ~/vim
+cd ~/vim
+
+
+curl 'https://s3.amazonaws.com/bengoa/vim-static.tar.gz' | tar -xz
+
+export VIMRUNTIME="$HOME/vim/runtime"
+export PATH="$HOME/vim:$PATH"
+cd -
 
 
